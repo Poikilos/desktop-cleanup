@@ -1,0 +1,28 @@
+# Training Disclosure for cleanup-desktop-shortcuts
+This Training Disclosure, which may be more specifically titled above here (and in this document possibly referred to as "this disclosure"), is based on **Training Disclosure version 1.1.4** at https://github.com/Hierosoft/training-disclosure by Jake Gustafson. Jake Gustafson is probably *not* an author of the project unless listed as a project author, nor necessarily the disclosure editor(s) of this copy of the disclosure unless this copy is the original which among other places I, Jake Gustafson, state IANAL. The original disclosure is released under the [CC0](https://creativecommons.org/public-domain/cc0/) license, but regarding any text that differs from the original:
+
+This disclosure also functions as a claim of copyright to the scope described in the paragraph below since potentially in some jurisdictions output not of direct human origin, by certain means of generation at least, may not be copyrightable (again, IANAL):
+
+Various author(s) may make claims of authorship to content in the project not mentioned in this disclosure, which this disclosure by way of omission unless stated elsewhere implies is of direct human origin unless stated elsewhere. Such statements elsewhere are present and complete if applicable to the best of the disclosure editor(s) ability. Additionally, the project author(s) hereby claim copyright and claim direct human origin to any and all content in the subsections of this disclosure itself, where scope is defined to the best of the ability of the disclosure editor(s), including the subsection names themselves, unless where stated, and unless implied such as by context, being copyrighted or trademarked elsewhere, or other means of statement or implication according to law in applicable jurisdiction(s).
+
+Disclosure editor(s): Hierosoft LLC
+
+Project author: Hierosoft LLC
+
+This disclosure is a voluntary of how and where content in or used by this project was produced by LLM(s) or any tools that are "trained" in any way.
+
+The main section of this disclosure lists such tools. For each, the version, install location, and a scope of their training sources in a way that is specific as possible.
+
+Subsections of this disclosure contain prompts used to generate content, in a way that is complete to the best ability of the disclosure editor(s).
+
+tool(s) used:
+- GPT-4-Turbo (Version 4o, chatgpt.com)
+
+Scope of use: code described in subsections--typically modified by hand to improve logic, variable naming, integration, etc, but in this commit, unmodified.
+
+##
+Make a tkinter python program. Import tkinter as tk. if __name__ == "__main__": sys.exit(main()) and return 0 from main after tk mainloop. For backward compatability from __future__ import print_function and use format not f string interpolation. In the main window there should be 3 rows, Scan button, use tksheet and make a sheet sized to fill the whole form and expand when the window expands with the headings Name, Location, and Path, and the third row is a button called "Clean Up". Make a class called ShortcutFile.  Using dict iteration for CLEANUP_ROOTS = {os.path.split(os.path.expanduser("~")[1]: expanduser("~/Desktop"), "Public": "C:\\Users\\Public\\Desktop"} list each file in each folder. Store the data in a class so the feature and other methods I'll describe can save state in self. Make CLEANUP_ROOTS a static attribute of a class called ShortcutCleaner instantiated as self.cleaner in the main window. The "Scan" button calls self.cleaner.scan(). In ShortcutCleaner make an OrderedDict attribute called shortcuts. In the scan method, for each item in the ShortcutCleaner.CLEANUP_ROOTS, call self._scan_dir(value, key) with the signature def _scan_dir(self, parent, caption). In that method, for each sub in os.listdir(parent), set sub_path = os.path.join(parent, sub). If sub_path isdir, continue (short circuit the loop). After that case, instantiate a new object called shortcut to a new ShortcutFile, setting the attributes parent, caption, and also get the accessed time and store it in the accessed attribute after converting the timestamp to a datetime. Set shortcut.name=sub, and shortcut.path = sub_path. After the outer dict iteration is complete, iterate self.shortcuts sorted by entry.accessed, and inside the loop retain the sorting by adding the current entry to the OrderedDict self.shortcuts using item.path as the key. Back in the main window, after the scan() call is complete, start filling self.sheet as follows. Iterate self.shortcuts. Each entry in the Name column contains shortcut.name, Location contains shortcut.location, and Path contains shortcut.path. Make each row checkable. When the "Clean Up" button is clicked, iterate rows in the sheet. if row is checked, get path from the row, and call self.cleaner.clean_item(path) and remove the row from the sheet. During clean item, set a local shortcut = self.shortcuts(path). set dest_dir = os.path.join(CLEANUP_ROOTS[shortcut.caption], "Unused"). if shortcut.caption == "Public", dest_dir += " Public Shortcuts" else dest_dir += " Shortcuts". shutil.move(shortcut.path, os.path.join(dest_dir, shortcut.name).
+
+Assume this file is saved as gui_main.py in a module called desktopcleanup. Author is Poikilos, and author e-mail is "7557867+Poikilos@users.noreply.github.com". Make a setup.py file and requirements.txt. Prefer classifiers to describe the project, and add relevant topical classifiers and a relevant description.
+
+Do not restrict the environment to Windows. We can technically analyze Linux or macOS or FreeBSD the same way as we have here, and I will change any Public Desktop code as necessary later.
