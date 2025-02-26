@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="desktopcleanup",
+    name="desktop-cleanup",
     version="0.1.0",
     author="Poikilos",
     author_email="7557867+Poikilos@users.noreply.github.com",
     description="A GUI tool to scan and clean up shortcut files from user and public desktops.",
-    long_description="""DesktopCleanup is a Python-based GUI application using Tkinter and tksheet.
+    long_description="""Desktop Cleanup is a Python-based GUI application using Tkinter and tksheet.
     It scans user and public desktop folders for shortcuts, displays them in a spreadsheet-like view,
     and allows users to clean them up by moving them to designated folders.""",
     long_description_content_type="text/plain",
-    url="https://github.com/Poikilos/desktopcleanup",
+    url="https://github.com/Poikilos/desktop-cleanup",
     packages=find_packages(),
     install_requires=[
         "tksheet",
@@ -35,7 +35,7 @@ setup(
     python_requires=">=3.6",
     entry_points={
         "gui_scripts": [
-            "desktopcleanup=desktopcleanup.gui_main:main"
+            "desktop-cleanup=desktopcleanup.gui_main:main"
         ]
     },
 )
